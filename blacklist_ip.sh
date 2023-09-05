@@ -14,7 +14,21 @@ function is_valid_ip() {
     local ip="$1"
     local stat=1
 
-    if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+    # Check if the given string is a valid CIDR notation
+    if [[ $ip =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}/[0-9]{1,2}$ ]]; then
+        # Extract IP and prefix
+        IFS='/' read -ra parts <<<"$ip"
+        local ip_part="${parts[0]}"
+        local prefix="${parts[1]}"
+
+        # Check the validity of IP part and prefix range
+        if [[ $ip_part =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}$ ]] && [[ $prefix -ge 0 && $prefix -le 32 ]]; then
+            IFS='.' read -ra a <<<"$ip_part"
+            [[ ${a[0]} -le 255 && ${a[1]} -le 255 && ${a[2]} -le 255 && ${a[3]} -le 255 ]]
+            stat=$?
+        fi
+    # Check if the given string is a valid IP address
+    elif [[ $ip =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}$ ]]; then
         IFS='.' read -ra a <<<"$ip"
         [[ ${a[0]} -le 255 && ${a[1]} -le 255 && ${a[2]} -le 255 && ${a[3]} -le 255 ]]
         stat=$?
