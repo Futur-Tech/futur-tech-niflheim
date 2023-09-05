@@ -62,16 +62,16 @@ function update_header() {
 function add_ip() {
     if is_valid_ip "$1"; then
         if grep -Fxq "$1" "$BLACKLIST_FILE"; then
-            echo "IP $1 is already in the blacklist."
+            echo "IP [$1] is already in the blacklist."
         else
             echo "$1" >>"$BLACKLIST_FILE"
-            echo "Added $1 to blacklist."
+            echo "Added [$1] to blacklist."
             sort_and_dedup
             update_header
             check_list
         fi
     else
-        echo "IP $1 is not a valid IP address."
+        echo "IP [$1]is not a valid IP address."
     fi
 }
 
@@ -79,14 +79,14 @@ function remove_ip() {
     if is_valid_ip "$1"; then
         if grep -Fxq "$1" "$BLACKLIST_FILE"; then
             grep -Fvx "$1" "$BLACKLIST_FILE" >"$BLACKLIST_FILE.tmp" && mv "$BLACKLIST_FILE.tmp" "$BLACKLIST_FILE"
-            echo "Removed $1 from blacklist."
+            echo "Removed [$1] from blacklist."
             update_header
             check_list
         else
-            echo "IP $1 is not in the blacklist."
+            echo "IP [$1] is not in the blacklist."
         fi
     else
-        echo "IP $1 is not a valid IP address."
+        echo "IP [$1] is not a valid IP address."
     fi
 }
 
@@ -108,7 +108,7 @@ function check_list() {
     # Check only the actual IP lines (excluding lines that start with '#' or are empty)
     grep -v '^#\|^$' "$BLACKLIST_FILE" | while IFS= read -r line; do
         if ! is_valid_ip "$line"; then
-            echo "IP $line in the blacklist is not a valid IP address."
+            echo "IP [$line] in the blacklist is not a valid IP address."
         fi
     done
 }
