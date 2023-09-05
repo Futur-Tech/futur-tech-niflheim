@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BLACKLIST_FILE="$(dirname "$0")/IPv4_nidhogg.txt"
+BLACKLIST_FILE="$(dirname "$0")/nidhogg_ipv4.txt"
 
 function show_help() {
     echo "Usage: $0 [add|remove|sort|check_list] [IP_ADDRESS]"
