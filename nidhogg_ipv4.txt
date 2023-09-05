@@ -1,0 +1,10 @@
+# Nidhogg IP Blacklist
+# 
+# In Norse mythology, Nidhogg is a dragon that gnaws at the roots of the World Tree, Yggdrasil.
+# Similar to how Nidhogg poses a constant threat to the stability of the cosmic order,
+# malicious or compromised IP addresses can pose risks to your network's security and stability.
+# 
+# Purpose: This list serves to collect and isolate such IP addresses,
+# reducing risks and increasing overall security.
+#
+
