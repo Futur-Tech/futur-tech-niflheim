@@ -7,7 +7,7 @@
 # Purpose: This list serves to collect and isolate such IP addresses,
 # reducing risks and increasing overall security.
 #
-# Last Updated: 2023-09-05 20:44:36
+# Last Updated: 2023-11-16 12:01:20
 
 1.0.243.116
 1.226.12.132
@@ -557,6 +557,7 @@
 139.99.120.130
 139.99.123.196
 139.99.219.208
+139.99.7.10
 14.102.154.66
 14.136.204.41
 14.139.125.36
