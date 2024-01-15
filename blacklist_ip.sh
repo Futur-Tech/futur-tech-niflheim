@@ -14,8 +14,8 @@ function is_valid_ip() {
     local ip="$1"
     local stat=1
 
-    # Check if the given string is a valid CIDR notation
-    if [[ $ip =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}/[0-9]{1,2}$ ]]; then
+    # Check if the given string is a valid IP
+    if [[ $ip =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}$ ]]; then
         # Extract IP and prefix
         IFS='/' read -ra parts <<<"$ip"
         local ip_part="${parts[0]}"
